@@ -1,0 +1,1161 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ==============================
+   GLOBAL SETTINGS
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #080812;
+    --sidebar: #0d0d1b;
+    --card: rgba(22, 22, 42, 0.75);
+    --purple: #9b5cff;
+    --blue: #5685ff;
+    --pink: #e05cff;
+    --green: #20e3a2;
+    --red: #ff5d7d;
+    --text: #ffffff;
+    --muted: #9292ad;
+    --border: rgba(255,255,255,0.08);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Background glow */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #6829ff;
+    filter: blur(180px);
+    opacity: 0.16;
+    top: -180px;
+    right: -100px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: #235dff;
+    filter: blur(180px);
+    opacity: 0.12;
+    bottom: -150px;
+    left: 20%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar {
+    position: fixed;
+    width: 255px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    padding: 35px 22px;
+    background: rgba(13,13,27,0.92);
+    backdrop-filter: blur(25px);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    animation: slideRight 0.7s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    color: white;
+}
+
+.logo i {
+    background: linear-gradient(135deg, #a855f7, #5685ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 30px;
+    animation: logoFloat 3s infinite ease-in-out;
+}
+
+@keyframes logoFloat {
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.menu-label {
+    color: #777791;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #9696ae;
+    font-size: 13px;
+    transition: 0.35s;
+}
+
+.nav-link i {
+    font-size: 17px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white;
+    background: linear-gradient(
+        110deg,
+        rgba(155,92,255,0.25),
+        rgba(86,133,255,0.12)
+    );
+    box-shadow: inset 3px 0 #a855f7;
+    transform: translateX(5px);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    color: #777791;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.sidebar-bottom i {
+    color: var(--purple);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+/* ==============================
+   MAIN CONTENT
+============================== */
+
+.main-content {
+    margin-left: 255px;
+    padding: 42px;
+    min-height: 100vh;
+    animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==============================
+   TOPBAR
+============================== */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.topbar h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 9px;
+}
+
+.topbar p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Add button */
+
+.add-btn {
+    background: linear-gradient(120deg, #9b5cff, #5685ff);
+    color: white;
+    border: none;
+    padding: 15px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 25px rgba(155,92,255,0.3);
+    transition: 0.35s;
+}
+
+.add-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 35px rgba(155,92,255,0.5);
+}
+
+.add-btn:active {
+    transform: scale(0.96);
+}
+
+/* ==============================
+   SUMMARY CARDS
+============================== */
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 23px;
+    margin-bottom: 38px;
+}
+
+.card {
+    position: relative;
+    padding: 28px;
+    border-radius: 19px;
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: 0.4s ease;
+    animation: cardAppear 0.8s ease backwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.2;
+    right: -60px;
+    bottom: -90px;
+    background: var(--purple);
+}
+
+.card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(155,92,255,0.5);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.income-card::before {
+    background: var(--green);
+}
+
+.expense-card::before {
+    background: var(--red);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-top p {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card-top i {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: rgba(155,92,255,0.15);
+    color: #b68aff;
+    font-size: 18px;
+    transition: 0.4s;
+}
+
+.income-card .card-top i {
+    color: var(--green);
+    background: rgba(32,227,162,0.12);
+}
+
+.expense-card .card-top i {
+    color: var(--red);
+    background: rgba(255,93,125,0.12);
+}
+
+.card:hover .card-top i {
+    transform: rotate(15deg) scale(1.12);
+}
+
+.card h2 {
+    font-size: 30px;
+    margin: 25px 0 12px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    position: relative;
+    word-break: break-word;
+}
+
+.card-description {
+    font-size: 11px;
+    color: #777791;
+}
+
+/* ==============================
+   TRANSACTION SECTION
+============================== */
+
+.transaction-section,
+.analytics-card {
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    padding: 28px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.section-heading p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.export-btn {
+    background: rgba(155,92,255,0.12);
+    color: #b68aff;
+    border: 1px solid rgba(155,92,255,0.2);
+    padding: 12px 17px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.export-btn:hover {
+    background: rgba(155,92,255,0.25);
+    transform: translateY(-3px);
+}
+
+/* Search */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--border);
+    padding: 14px 17px;
+    border-radius: 11px;
+    margin-bottom: 22px;
+    color: var(--muted);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 13px;
+}
+
+.search-box:focus-within {
+    border-color: var(--purple);
+}
+
+/* Table */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(255,255,255,0.035);
+}
+
+th {
+    text-align: left;
+    padding: 16px;
+    font-size: 11px;
+    color: #85859f;
+    font-weight: 600;
+}
+
+td {
+    padding: 18px 16px;
+    font-size: 12px;
+    color: #d1d1e0;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr {
+    transition: 0.3s;
+    animation: rowAppear 0.4s ease backwards;
+}
+
+tbody tr:hover {
+    background: rgba(155,92,255,0.07);
+}
+
+@keyframes rowAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.empty-message {
+    text-align: center;
+    padding: 35px;
+    color: var(--muted);
+}
+
+.type-income,
+.amount-income {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.type-expense,
+.amount-expense {
+    color: var(--red);
+    font-weight: 600;
+}
+
+/* Action buttons */
+
+.action-buttons {
+    display: flex;
+    gap: 13px;
+}
+
+.action-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.edit-btn {
+    color: #7e9fff;
+}
+
+.delete-btn {
+    color: #ff6685;
+}
+
+.action-buttons button:hover {
+    transform: scale(1.3);
+}
+
+/* ==============================
+   ANALYTICS
+============================== */
+
+.analytics {
+    margin-top: 40px;
+}
+
+.analytics-heading {
+    margin-bottom: 22px;
+}
+
+.analytics-heading h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.analytics-heading p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.analytics-card h3 {
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.category-item {
+    margin-bottom: 23px;
+}
+
+.category-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.category-info span:last-child {
+    color: #b68aff;
+}
+
+.progress-bg {
+    height: 9px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #9b5cff, #5685ff);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(155,92,255,0.5);
+    animation: progressLoad 1s ease;
+}
+
+@keyframes progressLoad {
+    from {
+        width: 0;
+    }
+}
+
+/* ==============================
+   MODAL
+============================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(3,3,12,0.8);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 450px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    background: rgba(20,20,42,0.97);
+    border: 1px solid rgba(155,92,255,0.3);
+    border-radius: 20px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+    animation: modalOpen 0.4s ease;
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.modal-header h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.modal-header p {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.modal-header button {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Form */
+
+form label {
+    display: block;
+    margin: 17px 0 9px;
+    font-size: 12px;
+    color: #c4c4d8;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 13px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: white;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--purple);
+    box-shadow: 0 0 15px rgba(155,92,255,0.15);
+}
+
+form select option {
+    background: #17172c;
+    color: white;
+}
+
+form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(120deg, #9b5cff, #5685ff);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(155,92,255,0.4);
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer {
+    margin-top: 45px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #65657d;
+    font-size: 11px;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        padding: 25px;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 25px;
+    }
+
+    .navigation {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        padding: 11px;
+        font-size: 11px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px 15px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+/* ==============================
+   REDUCED MOTION
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+/* =========================================
+   SPENDWISE - ULTRA ANIMATION PACK
+========================================= */
+
+/* 1. Animated Background Glow */
+
+body::before {
+    animation: glowOne 9s ease-in-out infinite alternate;
+}
+
+body::after {
+    animation: glowTwo 12s ease-in-out infinite alternate;
+}
+
+@keyframes glowOne {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.12;
+    }
+    100% {
+        transform: translate(-120px, 100px) scale(1.4);
+        opacity: 0.25;
+    }
+}
+
+@keyframes glowTwo {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(100px, -100px) scale(1.3);
+    }
+}
+
+
+/* 2. Animated Gradient Logo */
+
+.logo {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b68aff,
+        #5685ff,
+        #ffffff
+    );
+
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: logoGradient 5s linear infinite;
+}
+
+@keyframes logoGradient {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 300%;
+    }
+}
+
+
+/* 3. 3D Dashboard Cards */
+
+.card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.025);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.4),
+        0 0 25px rgba(155,92,255,0.2);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,0.07) 50%,
+        transparent 80%
+    );
+
+    transform: translateX(-120%);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.card:hover::after {
+    transform: translateX(120%);
+}
+
+
+/* 4. Floating Card Icons */
+
+.card-top i {
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* 5. Neon Button Effects */
+
+.add-btn {
+    position: relative;
+    overflow: hidden;
+    animation: buttonGlow 3s infinite;
+}
+
+@keyframes buttonGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(155,92,255,0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 20px rgba(155,92,255,0.5),
+            0 0 40px rgba(86,133,255,0.2);
+    }
+}
+
+.add-btn:hover {
+    transform: translateY(-5px) scale(1.04);
+}
+
+
+/* 6. Navigation Indicator */
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 0;
+    background: #b68aff;
+    left: 0;
+    top: 50%;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    height: 70%;
+    top: 15%;
+}
+
+
+/* 7. Animated Transaction Rows */
+
+tbody tr {
+    animation: transactionEnter 0.5s ease backwards;
+}
+
+tbody tr:hover {
+    transform: translateX(5px);
+    background: rgba(155,92,255,0.09);
+}
+
+@keyframes transactionEnter {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 8. Animated Progress Bars */
+
+.progress-fill {
+    background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #5685ff,
+        #d946ef
+    );
+
+    background-size: 200% 100%;
+
+    animation:
+        progressLoad 1.5s ease,
+        progressShine 4s linear infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+
+/* 9. Glassmorphism Modal */
+
+.modal-content {
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(182,138,255,0.4);
+
+    box-shadow:
+        0 0 40px rgba(155,92,255,0.12),
+        0 30px 100px rgba(0,0,0,0.6);
+}
+
+
+/* 10. Animated Input Focus */
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 15px rgba(155,92,255,0.2),
+        inset 0 0 10px rgba(155,92,255,0.04);
+}
+
+
+/* 11. Export Button Animation */
+
+.export-btn:hover i {
+    animation: downloadBounce 0.6s ease;
+}
+
+@keyframes downloadBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+
+/* 12. Animated Section Entrance */
+
+.transaction-section,
+.analytics-card {
+    animation: sectionReveal 1s ease both;
+}
+
+@keyframes sectionReveal {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* 13. Smooth Page Scrolling */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+
+/* 14. Animated Footer */
+
+footer {
+    transition: 0.4s;
+}
+
+footer:hover {
+    color: #b68aff;
+    letter-spacing: 1px;
+}
+
+
+/* 15. Reduced Motion Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.logo-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-main i {
+    font-size: 28px;
+    color: #9b78ff;
+}
+
+.logo-main span {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo small {
+    margin-left: 40px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #a3a3b5;
+    text-transform: uppercase;
+}

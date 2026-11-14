@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpendWise | Smart Expense Tracker</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-main">
+                <i class="fa-solid fa-wallet"></i>
+                <span>SpendWise</span>
+            </div>
+                <small>Designed By Rajdeep</small>
+            </div>
+
+            <div class="menu-label">MENU</div>
+
+            <nav class="navigation">
+
+                <a href="#dashboard" class="nav-link active">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#transactions" class="nav-link">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <span>Transactions</span>
+                </a>
+
+                <a href="#analytics" class="nav-link">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <i class="fa-solid fa-shield-halved"></i>
+                <p>Personal Finance Manager</p>
+                <span>Version 1.0</span>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content" id="dashboard">
+
+            <!-- HEADER -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your financial overview.</p>
+                </div>
+
+                <button class="add-btn" id="openModal">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction
+                </button>
+
+            </header>
+
+
+            <!-- SUMMARY CARDS -->
+
+            <section class="summary-cards">
+
+                <div class="card balance-card">
+
+                    <div class="card-top">
+                        <p>Total Balance</p>
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                    <h2 id="totalBalance">₹0.00</h2>
+
+                    <span class="card-description">Your available balance</span>
+
+                </div>
+
+
+                <div class="card income-card">
+
+                    <div class="card-top">
+                        <p>Total Income</p>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                    <h2 id="totalIncome">₹0.00</h2>
+
+                    <span class="card-description">Total money received</span>
+
+                </div>
+
+
+                <div class="card expense-card">
+
+                    <div class="card-top">
+                        <p>Total Expenses</p>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </div>
+
+                    <h2 id="totalExpense">₹0.00</h2>
+
+                    <span class="card-description">Total money spent</span>
+
+                </div>
+
+            </section>
+
+
+            <!-- TRANSACTION SECTION -->
+
+            <section class="transaction-section" id="transactions">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Recent Transactions</h2>
+                        <p>Track your latest financial activities.</p>
+                    </div>
+
+                    <button class="export-btn" id="exportBtn">
+                        <i class="fa-solid fa-download"></i>
+                        Export TXT
+                    </button>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text"
+                        id="searchInput"
+                        placeholder="Search transactions...">
+
+                </div>
+
+
+                <!-- TABLE -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="transactionList">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ANALYTICS -->
+
+            <section class="analytics" id="analytics">
+
+                <div class="analytics-heading">
+                    <h2>Expense Analytics</h2>
+                    <p>Understand where your money goes.</p>
+                </div>
+
+                <div class="analytics-card">
+
+                    <h3>Category-wise Expenses</h3>
+
+                    <div id="expenseDistribution"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer>
+                <p>© 2026 Served By Rajdeep. Smart Money Management.</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- TRANSACTION MODAL -->
+
+    <div class="modal" id="transactionModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="modalTitle">Add Transaction</h2>
+                    <p>Enter your transaction details below.</p>
+                </div>
+
+                <button id="closeModal" type="button">
+                    &times;
+                </button>
+
+            </div>
+
+
+            <form id="transactionForm">
+
+                <label for="title">Transaction Title</label>
+
+                <input type="text"
+                    id="title"
+                    placeholder="e.g. Grocery Shopping"
+                    maxlength="80"
+                    required>
+
+
+                <label for="amount">Amount (₹)</label>
+
+                <input type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="0.01"
+                    step="0.01"
+                    required>
+
+
+                <label for="type">Transaction Type</label>
+
+                <select id="type" required>
+
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+
+                </select>
+
+
+                <label for="category">Category</label>
+
+                <select id="category" required>
+
+                    <option value="Salary">Salary</option>
+                    <option value="Freelancing">Freelancing</option>
+                    <option value="Business">Business</option>
+                    <option value="Food">Food</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Education">Education</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+
+                </select>
+
+
+                <label for="date">Date</label>
+
+                <input type="date" id="date" required>
+
+
+                <label for="description">Description</label>
+
+                <textarea id="description"
+                    placeholder="Write a short description..."
+                    maxlength="300"></textarea>
+
+
+                <button type="submit" class="submit-btn" id="saveBtn">
+                    Save Transaction
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
